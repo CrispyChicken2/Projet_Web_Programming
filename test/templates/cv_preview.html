@@ -1,0 +1,55 @@
+<article class="cv-card">
+    <header class="cv-header">
+        <div>
+            <h2>{{ cv.prenom }} {{ cv.nom }}</h2>
+            <p>{{ cv.titre }}</p>
+        </div>
+        <div class="cv-contact">
+            <span>{{ cv.email }}</span>
+            <span>{{ cv.telephone }}</span>
+        </div>
+    </header>
+
+    <section>
+        <h3>Profil</h3>
+        {% for resume in cv.resume %}
+            <p>{{ resume }}</p>
+        {% endfor %}
+    </section>
+
+    <section>
+        <h3>Experiences professionnelles</h3>
+        <ul>
+            {% for experience in cv.experiences %}
+                <li>{{ experience }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h3>Formations</h3>
+        <ul>
+            {% for formation in cv.formations %}
+                <li>{{ formation }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h3>Competences</h3>
+        <ul class="tag-list">
+            {% for competence in cv.competences %}
+                <li>{{ competence }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h3>Langues</h3>
+        <ul class="tag-list">
+            {% for langue in cv.langues %}
+                <li>{{ langue }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+</article>

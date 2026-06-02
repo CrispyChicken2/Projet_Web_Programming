@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constructeur de CV</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <script src="/static/script.js" defer></script>
+</head>
+<body>
+    <header class="topbar">
+        <div>
+            <strong>Constructeur de CV</strong>
+            <span>{{ user.email }}</span>
+        </div>
+        <form action="/logout" method="post">
+            <button type="submit" class="button-secondary">Deconnexion</button>
+        </form>
+    </header>
+
+    <main class="page">
+        <section class="form-section">
+            <h1>Mon CV</h1>
+            <p class="intro">
+                Remplis le formulaire, puis enregistre et previsualise ton CV sans recharger la page.
+            </p>
+
+            <form
+                id="cv-form"
+                class="cv-form"
+                hx-post="/generate-cv"
+                hx-target="#cv-preview"
+                hx-swap="innerHTML"
+            >
+                <div class="form-grid">
+                    <label>
+                        Nom
+                        <input type="text" name="nom" value="{{ cv.nom }}" required>
+                    </label>
+
+                    <label>
+                        Prenom
+                        <input type="text" name="prenom" value="{{ cv.prenom }}" required>
+                    </label>
+
+                    <label>
+                        Email du CV
+                        <input type="email" name="email" value="{{ cv.email }}" required>
+                    </label>
+
+                    <label>
+                        Telephone
+                        <input type="tel" name="telephone" value="{{ cv.telephone }}" required>
+                    </label>
+                </div>
+
+                <label>
+                    Titre du profil
+                    <input
+                        type="text"
+                        name="titre"
+                        value="{{ cv.titre }}"
+                        placeholder="Exemple : Developpeur web junior"
+                        required
+                    >
+                </label>
+
+                <div class="repeatable-group" id="resume-group">
+                    <div class="field-title">
+                        <span>Resume professionnel</span>
+                        <button type="button" class="add-field" data-target="resume-group">Ajouter</button>
+                    </div>
+                    {% for item in cv.resume %}
+                        <label>
+                            <span class="sr-only">Resume professionnel</span>
+                            <textarea name="resume" rows="3" {% if loop.first %}required{% endif %}>{{ item }}</textarea>
+                        </label>
+                    {% endfor %}
+                </div>
+
+                <div class="repeatable-group" id="experiences-group">
+                    <div class="field-title">
+                        <span>Experiences professionnelles</span>
+                        <button type="button" class="add-field" data-target="experiences-group">Ajouter</button>
+                    </div>
+                    {% for item in cv.experiences %}
+                        <label>
+                            <span class="sr-only">Experience professionnelle</span>
+                            <textarea name="experiences" rows="3" {% if loop.first %}required{% endif %}>{{ item }}</textarea>
+                        </label>
+                    {% endfor %}
+                </div>
+
+                <div class="repeatable-group" id="formations-group">
+                    <div class="field-title">
+                        <span>Formations</span>
+                        <button type="button" class="add-field" data-target="formations-group">Ajouter</button>
+                    </div>
+                    {% for item in cv.formations %}
+                        <label>
+                            <span class="sr-only">Formation</span>
+                            <input type="text" name="formations" value="{{ item }}" {% if loop.first %}required{% endif %}>
+                        </label>
+                    {% endfor %}
+                </div>
+
+                <div class="repeatable-group" id="competences-group">
+                    <div class="field-title">
+                        <span>Competences</span>
+                        <button type="button" class="add-field" data-target="competences-group">Ajouter</button>
+                    </div>
+                    {% for item in cv.competences %}
+                        <label>
+                            <span class="sr-only">Competence</span>
+                            <input type="text" name="competences" value="{{ item }}" {% if loop.first %}required{% endif %}>
+                        </label>
+                    {% endfor %}
+                </div>
+
+                <div class="repeatable-group" id="langues-group">
+                    <div class="field-title">
+                        <span>Langues</span>
+                        <button type="button" class="add-field" data-target="langues-group">Ajouter</button>
+                    </div>
+                    {% for item in cv.langues %}
+                        <label>
+                            <span class="sr-only">Langue</span>
+                            <input type="text" name="langues" value="{{ item }}" {% if loop.first %}required{% endif %}>
+                        </label>
+                    {% endfor %}
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit">Enregistrer et previsualiser</button>
+                    <button type="button" id="print-cv" class="button-secondary">Exporter mon CV</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="preview-section">
+            <div id="cv-preview">
+                {% if has_cv %}
+                    {% include "cv_preview.html" %}
+                {% else %}
+                    <div class="preview-placeholder">
+                        Le CV genere apparaitra ici.
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+</body>
+</html>

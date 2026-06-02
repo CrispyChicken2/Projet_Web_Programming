@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - Constructeur de CV</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="auth-page">
+    <main class="auth-card">
+        <h1>Inscription</h1>
+        <p class="intro">Cree un compte simple pour enregistrer ton CV.</p>
+
+        {% if error %}
+            <p class="error-message">{{ error }}</p>
+        {% endif %}
+
+        <form class="cv-form" action="/register" method="post">
+            <label>
+                Adresse email
+                <input type="email" name="email" value="{{ email }}" required>
+            </label>
+
+            <label>
+                Mot de passe
+                <input type="password" name="password" required>
+            </label>
+
+            <button type="submit">Creer mon compte</button>
+        </form>
+
+        <p class="auth-link">
+            Deja un compte ?
+            <a href="/login">Se connecter</a>
+        </p>
+    </main>
+</body>
+</html>
