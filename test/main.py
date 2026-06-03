@@ -46,6 +46,7 @@ def home(request: Request, db: Session = Depends(get_db)):
     cv = cv_record_to_dict(cv_record, default_email=user.email)
 
     return templates.TemplateResponse(
+        request,
         "index.html",
         {
             "request": request,
@@ -63,6 +64,7 @@ def register_page(request: Request, db: Session = Depends(get_db)):
         return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
 
     return templates.TemplateResponse(
+        request,
         "register.html",
         {"request": request, "error": None, "email": ""},
     )
@@ -108,6 +110,7 @@ def login_page(request: Request, db: Session = Depends(get_db)):
         return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
 
     return templates.TemplateResponse(
+        request,
         "login.html",
         {"request": request, "error": None, "email": ""},
     )
@@ -154,6 +157,7 @@ async def generate_cv(request: Request, db: Session = Depends(get_db)):
     save_user_cv(db, user, cv)
 
     return templates.TemplateResponse(
+        request,
         "cv_preview.html",
         {
             "request": request,
@@ -165,6 +169,7 @@ async def generate_cv(request: Request, db: Session = Depends(get_db)):
 def auth_template(request: Request, template_name: str, error: str, email: str):
     """Reaffiche un formulaire d'authentification avec un message d'erreur."""
     return templates.TemplateResponse(
+        request,
         template_name,
         {"request": request, "error": error, "email": email},
         status_code=status.HTTP_400_BAD_REQUEST,
