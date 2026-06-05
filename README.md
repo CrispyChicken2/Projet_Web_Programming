@@ -27,7 +27,7 @@ Fichiers utiles (pour les développeurs)
 - Pages et gabarits : le dossier `templates/`
 - Ressources statiques : le dossier `static/`
 
-Côté IT (très bref)
+## Côté IT (très bref)
 - Base de données : SQLite via SQLAlchemy (fichier `cv_app.db`) pour une persistance légère et simple à déployer.
 - Authentification : mots de passe hachés avec PBKDF2 ; gestion de session côté serveur pour garder l'identifiant utilisateur.
 - Framework : l'application utilise FastAPI pour les routes et Jinja2 pour les templates.

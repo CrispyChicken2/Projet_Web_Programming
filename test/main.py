@@ -21,7 +21,7 @@ from models import CV, User
 app = FastAPI()
 app.add_middleware(
     SessionMiddleware,
-    secret_key="change-this-secret-key-for-a-real-project",
+    secret_key="Xavier est le meilleur <3",
 )
 
 # Dossiers utilises par FastAPI pour trouver les fichiers du projet.
