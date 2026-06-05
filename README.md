@@ -1,24 +1,28 @@
 # Générateur de CV en ligne — Vue utilisateur
 
-Qu'est‑ce que c'est ?
+## Qu'est‑ce que c'est ?
 - Une application web simple qui permet de créer, organiser et prévisualiser un CV directement depuis votre navigateur.
 
-Ce que vous pouvez faire
+## Ce que vous pouvez faire
 - Créer un compte et vous connecter.
 - Saisir vos informations personnelles, expériences, formations et compétences via des formulaires clairs.
 - Réorganiser et compléter les sections de votre CV.
 - Voir un aperçu immédiat du CV en version web adaptée à l'impression.
 - Imprimer ou enregistrer votre CV au format PDF depuis la fonction d'impression du navigateur.
 
-Usage rapide (côté utilisateur)
+## Usage rapide (côté utilisateur)
 - Inscription : créez un compte depuis la page d'inscription.
 - Édition : remplissez les champs du formulaire pour chaque section (Expériences, Formation, Compétences, etc.).
 - Prévisualisation : cliquez sur "Aperçu" pour voir le rendu final et le télécharger/imprimer.
 
-Accessibilité
+## Accessibilité
 - L'interface est conçue pour être simple et responsive afin de fonctionner sur ordinateur et tablette.
+- Côté IT, pour accéder au code il faut :
+    - Cloner le git avec `git clone ...`
+    - Créer un environnement python pour télécharger les librairies requises sur `requirements.txt`
+    -Lancer le fichier python `main.py`
 
-Informations techniques (très succinct)
+## Informations techniques (très succinct)
 - Outils utilisés : Flask (serveur web léger, idéal pour prototypage rapide) ; Apache en reverse proxy pour assurer l'accès public et TLS sur la VM d'hébergement.
 - Déploiement : l'application est hébergée sur une VM et accessible publiquement à l'adresse suivante : https://k2vm-101.mde.epf.fr/
 
