@@ -22,8 +22,7 @@
     - Créer un environnement python pour télécharger les librairies requises sur `requirements.txt`
     -Lancer le fichier python `main.py`
 
-## Informations techniques (très succinct)
-- Outils utilisés : Flask (serveur web léger, idéal pour prototypage rapide) ; Apache en reverse proxy pour assurer l'accès public et TLS sur la VM d'hébergement.
+## Informations techniques
 - Déploiement : l'application est hébergée sur une VM et accessible publiquement à l'adresse suivante : https://k2vm-101.mde.epf.fr/
 
 Fichiers utiles (pour les développeurs)
